@@ -1,2 +1,24 @@
-<p class="empty-cart-message">Your cart is empty</p>
-
+<div class="cart-container">
+   <div class="cart-panel">
+      <div *ngFor="let product of cart" class="cart-items">
+         <img src={{product.url}}>
+         <div class="cart-item-details">
+            <p>{{product.name}}</p>
+            <p>{{product.price}}</p>
+            <p>Amount: </p>
+            <input (ngModelChange)="amountChanged($event, product)" [(ngModel)]="product.amount" type="number" name="input" value={{product.amount}} id="" class="number-input">
+         </div>
+      </div>
+      <h2>Total: ${{total}}</h2>
+   </div>
+   <form action="">
+      <h3>Full name</h3>
+      <input type="text" name="" id="" class="text-input">
+      <h3>Address</h3>
+      <input type="text" name="" id="" class="text-input">
+      <h3>credit card number</h3>
+      <input type="text" name="" id="" class="text-input">
+      <br>
+      <button routerLink="/">Submit</button>
+   </form>
+</div>

@@ -9,19 +9,45 @@ import { Product } from '../../models/product';
 })
 export class CartComponent {
 
+  // TODO: 2- Form validation (With Alert)
+  // TODO: 3- Confirmation page after checkout
+
   cart: Product[] = [];
-  total: string = '';
-  count: number[] = [];
-  name: string = '';
-  address: string = '';
-  ccNumber: string = '';
+  totalPrice: number = 0;
+  total: number = 0;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cart = this.cartService.getCart();
-    this.count = this.count = [0,1,2,3,4,5,6,7,8,9,10];
+    this.calculateTotal();
   }
 
+  onSubmit() {
 
+  }
+
+  calculateTotal() {
+    this.total = 0;
+    this.cart.forEach(product => {
+      this.total += product.price * product.amount;
+    });
+    this.total = parseFloat(this.total.toFixed(2));
+  }
+
+  checkout() {
+    this.cartService.clearCart();
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
+
+  amountChanged(updatedValue: any, product: Product) {
+    if (updatedValue == 0) {
+      this.cart = this.cartService.removeItem(product);
+    }
+    product.amount = updatedValue;
+    this.calculateTotal();
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product';
-import { ProductService } from 'src/app/services/product/product.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,10 +9,18 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ProductItemComponent {
   @Input() product: Product = new Product();
+  amount: number = 0;
   
-  constructor(private productService: ProductService) { }
+  constructor(
+    private cartService: CartService
+  ) { }
   
   ngOnInit(): void {
     
+  }
+
+  addToCart(product: Product) {
+    product.amount = parseInt(this.amount as unknown as string);
+    this.cartService.addToCart(product);
   }
 }

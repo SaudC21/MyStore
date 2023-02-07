@@ -17,6 +17,9 @@ export class ProductService {
     let products = this.http.get<Product[]>('../assets/data.json');
     products.subscribe(data => {
       this.products = data;
+      this.products.forEach(product => {
+        product.amount = 0;
+      });
     });
     return products;
   }

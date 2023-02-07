@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -10,15 +11,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductItemDetailComponent {
   product: Product = new Product();
+  amount: number = 0;
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.product = this.productService.getProduct(params['id']);
     });
+  }
+
+  addToCart(product: Product) {
+    this.product.amount = parseInt(this.amount as unknown as string);
+    this.cartService.addToCart(product);
   }
 }
