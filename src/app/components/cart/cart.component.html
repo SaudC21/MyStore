@@ -4,21 +4,21 @@
          <img src={{product.url}}>
          <div class="cart-item-details">
             <p>{{product.name}}</p>
-            <p>{{product.price}}</p>
+            <p>${{product.price}}</p>
             <p>Amount: </p>
             <input (ngModelChange)="amountChanged($event, product)" [(ngModel)]="product.amount" type="number" name="input" value={{product.amount}} id="" class="number-input">
          </div>
       </div>
       <h2>Total: ${{total}}</h2>
    </div>
-   <form action="">
+   <form #form="ngForm" (ngSubmit)="onSubmit()">
       <h3>Full name</h3>
-      <input type="text" name="" id="" class="text-input">
+      <input type="text" name="input1" class="text-input" placeholder="(minmum 3 characters)" required minlength="3" [(ngModel)]="name">
       <h3>Address</h3>
-      <input type="text" name="" id="" class="text-input">
-      <h3>credit card number</h3>
-      <input type="text" name="" id="" class="text-input">
+      <input type="text" name="input2" class="text-input" placeholder="(minmum 6 characters)" required minlength="6" [(ngModel)]="address">
+      <h3>Credit card number</h3>
+      <input type="text" name="creditCard" class="text-input" placeholder="(16-digit number)" required minlength="16" minlength="16" [(ngModel)]="creditCard">
       <br>
-      <button routerLink="/">Submit</button>
+      <button type="submit" [disabled]="form.invalid" routerLink="/confirmation" (click)="onSubmit()">Submit</button>
    </form>
 </div>

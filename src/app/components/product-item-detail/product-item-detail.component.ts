@@ -11,7 +11,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class ProductItemDetailComponent {
   product: Product = new Product();
-  amount: number = 0;
+  amount: number = 1;
 
   constructor(
     private productService: ProductService,

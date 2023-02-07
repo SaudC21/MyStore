@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class ProductItemComponent {
   @Input() product: Product = new Product();
-  amount: number = 0;
+  amount: number = 1;
   
   constructor(
     private cartService: CartService

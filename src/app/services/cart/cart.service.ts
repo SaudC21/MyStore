@@ -6,6 +6,8 @@ import { Product } from 'src/app/models/product';
 })
 export class CartService {
   products: Product[] = [];
+  userName: string = '';
+  totalPrice: number = 0;
 
   constructor() { }
 
@@ -35,5 +37,18 @@ export class CartService {
 
   clearCart() {
     this.products = [];
+  }
+
+  addUserOrder(name: string, price: number) {
+    this.userName = name;
+    this.totalPrice = price;
+  }
+
+  getUserName(): string {
+    return this.userName;
+  }
+
+  getTotalPrice(): number {
+    return this.totalPrice;
   }
 }

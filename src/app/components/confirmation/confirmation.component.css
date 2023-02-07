@@ -1,20 +1,39 @@
 .confirmation-container {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin-top: 8%;
- }
- 
- .confirmation-items {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
- }
- 
- .confirmation-header {
-   color: #33e5bc
- }
- 
- .confirmation-item {
-   margin-bottom: 30px;
- }
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8%;
+}
+
+.confirmation-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirmation-header {
+  font-size: 38px;
+  color: #33e5bc
+}
+
+.confirmation-item {
+  font-size: 21px;
+  margin-bottom: 30px;
+}
+
+button {
+  background-color: #33B5E5;
+  color: white;
+  font-size: 18px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  border-radius: 15px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
