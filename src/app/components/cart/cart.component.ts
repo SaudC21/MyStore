@@ -10,9 +10,6 @@ import { Product } from '../../models/product';
 
 export class CartComponent {
 
-  // TODO: 2- Form validation (With Alert)
-  // TODO: 3- Confirmation page after checkout
-
   cart: Product[] = [];
   totalPrice: number = 0;
   total: number = 0;
@@ -44,15 +41,13 @@ export class CartComponent {
   amountChanged(updatedValue: any, product: Product): void {
     if (updatedValue == 0) {
       this.cart = this.cartService.removeItem(product);
+      alert('Item removed from cart!');
     }
     product.amount = updatedValue;
     this.calculateTotal();
   }
 
   onSubmit(): void {
-    console.log('Name: ' + this.name);
-    console.log('Address: ' + this.address);
-    console.log('Credit Card: ' + this.creditCard);
     this.cartService.addUserOrder(this.name, this.total);
     alert('Thank you for your order!');
   }

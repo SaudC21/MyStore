@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/product';
 import { CartService } from 'src/app/services/cart/cart.service';
 
@@ -9,6 +9,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class ProductItemComponent {
   @Input() product: Product = new Product();
+  @Output() prodcutEvent: EventEmitter<Product> = new EventEmitter<Product>();
   amount: number = 1;
   
   constructor(
@@ -21,6 +22,6 @@ export class ProductItemComponent {
 
   addToCart(product: Product) {
     product.amount = parseInt(this.amount as unknown as string);
-    this.cartService.addToCart(product);
+    this.prodcutEvent.emit(product);
   }
 }

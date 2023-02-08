@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from '../../services/product/product.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +12,10 @@ export class ProductListComponent {
 
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+  ) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
@@ -19,4 +23,7 @@ export class ProductListComponent {
     });
   }
 
+  addProductToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
 }

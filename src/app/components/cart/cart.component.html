@@ -13,7 +13,11 @@
    </div>
    <form #form="ngForm" (ngSubmit)="onSubmit()">
       <h3>Full name</h3>
-      <input type="text" name="input1" class="text-input" placeholder="(minmum 3 characters)" required minlength="3" [(ngModel)]="name">
+      <input #nameInput="ngModel" type="text" name="nameInput" class="text-input" placeholder="(minmum 3 characters)" required minlength="3" [(ngModel)]="name"
+      *ngIf="name.length > 3; else elseBlock">
+      <ng-template #elseBlock>
+         <p>Invalid name, please enter valid name</p>
+      </ng-template>
       <h3>Address</h3>
       <input type="text" name="input2" class="text-input" placeholder="(minmum 6 characters)" required minlength="6" [(ngModel)]="address">
       <h3>Credit card number</h3>
