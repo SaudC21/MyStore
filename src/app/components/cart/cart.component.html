@@ -13,15 +13,15 @@
    </div>
    <form #form="ngForm" (ngSubmit)="onSubmit()">
       <h3>Full name</h3>
-      <input #nameInput="ngModel" type="text" name="nameInput" class="text-input" placeholder="(minmum 3 characters)" required minlength="3" [(ngModel)]="name"
-      *ngIf="name.length > 3; else elseBlock">
-      <ng-template #elseBlock>
-         <p>Invalid name, please enter valid name</p>
-      </ng-template>
+      <!-- name.length < 3 -->
+      <input #input1="ngModel" type="text" name="nameInput" class="text-input" placeholder="(minmum 3 characters)" required minlength="3" [(ngModel)]="name">
+      <p class="error" *ngIf="input1.dirty && name.length < 3">Invalid name, please enter valid name</p>
       <h3>Address</h3>
-      <input type="text" name="input2" class="text-input" placeholder="(minmum 6 characters)" required minlength="6" [(ngModel)]="address">
+      <input #input2="ngModel" type="text" name="input2" class="text-input" placeholder="(minmum 6 characters)" required minlength="6" [(ngModel)]="address">
+      <p class="error" *ngIf="input2.dirty && address.length < 6">Invalid address, please enter valid address</p>
       <h3>Credit card number</h3>
-      <input type="text" name="creditCard" class="text-input" placeholder="(16-digit number)" required minlength="16" minlength="16" [(ngModel)]="creditCard">
+      <input #input3="ngModel" type="text" name="creditCard" class="text-input" placeholder="(16-digit number)" required minlength="16" minlength="16" [(ngModel)]="creditCard">
+      <p class="error" *ngIf="input3.dirty && creditCard.length != 16">Invalid credit card, please enter valid credit card</p>
       <br>
       <button type="submit" [disabled]="form.invalid" routerLink="/confirmation" (click)="onSubmit()">Submit</button>
    </form>
