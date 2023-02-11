@@ -19,9 +19,9 @@
       <input #input2="ngModel" type="text" name="input2" class="text-input" placeholder="(minmum 6 characters)" required minlength="6" [(ngModel)]="address">
       <p class="error" *ngIf="input2.dirty && address.length < 6">Invalid address, please enter valid address</p>
       <h3>Credit card number</h3>
-      <input #input3="ngModel" type="text" name="creditCard" class="text-input" placeholder="(16-digit number)" required minlength="16" minlength="16" [(ngModel)]="creditCard">
+      <input #input3="ngModel" type="text" name="creditCard" class="text-input" placeholder="(16-digit number)" required minlength="16" minlength="16" [(ngModel)]="creditCard" (keypress)="keyPressNumbers($event)">
       <p class="error" *ngIf="input3.dirty && creditCard.length != 16">Invalid credit card, please enter valid credit card</p>
       <br>
-      <button type="submit" [disabled]="form.invalid" routerLink="/confirmation" (click)="onSubmit()">Submit</button>
+      <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Submit</button>
    </form>
 </div>
